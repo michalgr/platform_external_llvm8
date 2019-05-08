@@ -1,0 +1,147 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+cc_defaults {
+    name: "llvm8_defaults_codegen",
+    host_supported: true,
+    header_libs: [
+        "llvm8_headers_no_generated_headers",
+    ],
+    cflags: [
+        "-Wno-unused-parameter",
+    ],
+    rtti: true,
+}
+
+cc_defaults {
+    name: "llvm8_defaults",
+    header_libs: [
+        "llvm8_headers",
+    ],
+    cflags: [
+        "-Wno-unused-parameter",
+    ],
+    rtti: true,
+}
+
+cc_library_headers {
+    name: "llvm8_headers_no_generated_headers",
+    host_supported: true,
+    export_include_dirs: ["include"],
+    target: {
+        android: {
+            export_include_dirs: ["device/include"],
+        },
+        host: {
+            export_include_dirs: ["host/include"],
+        },
+    },
+}
+
+cc_library_headers {
+    name: "llvm8_headers",
+    header_libs: [
+        "llvm8_headers_no_generated_headers",
+        "llvm8_generated_headers",
+    ],
+    export_header_lib_headers: [
+        "llvm8_headers_no_generated_headers",
+        "llvm8_generated_headers",
+    ],
+}
+
+cc_library_static {
+    name: "libllvm8",
+    header_libs: [
+        "llvm8_headers",
+    ],
+    export_header_lib_headers: [
+        "llvm8_headers",
+    ],
+    whole_static_libs: [
+        "llvm8_lib_Analysis",
+        "llvm8_lib_AsmParser",
+        "llvm8_lib_BinaryFormat",
+        "llvm8_lib_Bitcode_Reader",
+        "llvm8_lib_Bitcode_Writer",
+        "llvm8_lib_CodeGen",
+        "llvm8_lib_CodeGen_AsmPrinter",
+        "llvm8_lib_CodeGen_GlobalISel",
+        "llvm8_lib_CodeGen_MIRParser",
+        "llvm8_lib_CodeGen_SelectionDAG",
+        "llvm8_lib_DebugInfo_CodeView",
+        "llvm8_lib_DebugInfo_DWARF",
+        "llvm8_lib_DebugInfo_MSF",
+        "llvm8_lib_DebugInfo_PDB",
+        "llvm8_lib_DebugInfo_Symbolize",
+        "llvm8_lib_Demangle",
+        "llvm8_lib_ExecutionEngine",
+        "llvm8_lib_ExecutionEngine_Interpreter",
+        "llvm8_lib_ExecutionEngine_MCJIT",
+        "llvm8_lib_ExecutionEngine_Orc",
+        "llvm8_lib_ExecutionEngine_RuntimeDyld",
+        "llvm8_lib_FuzzMutate",
+        "llvm8_lib_IR",
+        "llvm8_lib_IRReader",
+        "llvm8_lib_LTO",
+        "llvm8_lib_LineEditor",
+        "llvm8_lib_Linker",
+        "llvm8_lib_MC",
+        "llvm8_lib_MC_MCDisassembler",
+        "llvm8_lib_MC_MCParser",
+        "llvm8_lib_MCA",
+        "llvm8_lib_Object",
+        "llvm8_lib_ObjectYAML",
+        "llvm8_lib_OptRemarks",
+        "llvm8_lib_Option",
+        "llvm8_lib_Passes",
+        "llvm8_lib_ProfileData",
+        "llvm8_lib_ProfileData_Coverage",
+        "llvm8_lib_Support",
+        "llvm8_lib_TableGen",
+        "llvm8_lib_Target",
+        "llvm8_lib_TextAPI",
+        "llvm8_lib_Transforms_AggressiveInstCombine",
+        "llvm8_lib_Transforms_Coroutines",
+        "llvm8_lib_Transforms_Hello",
+        "llvm8_lib_Transforms_Instrumentation",
+        "llvm8_lib_Transforms_InstCombine",
+        "llvm8_lib_Transforms_IPO",
+        "llvm8_lib_Transforms_ObjCARC",
+        "llvm8_lib_Transforms_Scalar",
+        "llvm8_lib_Transforms_Utils",
+        "llvm8_lib_Transforms_Vectorize",
+        "llvm8_lib_WindowsManifest",
+        "llvm8_lib_XRay",
+
+        // BPF target
+        "llvm8_lib_Target_BPF",
+        "llvm8_lib_Target_BPF_AsmParser",
+        "llvm8_lib_Target_BPF_Disassembler",
+        "llvm8_lib_Target_BPF_InstPrinter",
+        "llvm8_lib_Target_BPF_MCTargetDesc",
+        "llvm8_lib_Target_BPF_TargetInfo",
+
+        // X86 target
+        "llvm8_lib_Target_X86",
+        "llvm8_lib_Target_X86_AsmParser",
+        "llvm8_lib_Target_X86_Disassembler",
+        "llvm8_lib_Target_X86_InstPrinter",
+        "llvm8_lib_Target_X86_MCTargetDesc",
+        "llvm8_lib_Target_X86_TargetInfo",
+        "llvm8_lib_Target_X86_Utils",
+    ],
+}
