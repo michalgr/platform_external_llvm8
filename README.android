@@ -3,3 +3,4 @@ bpftrace repository. Following modifications were introduced:
 - requirements for host enviroment were reduced by modifying
   host/include/llvm/Config/config.h and gating some code not to be compiled
   when building tblgen
+- relevant CMakeLists.txt files were translated to appropriate Android.bp files
