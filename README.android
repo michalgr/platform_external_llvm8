@@ -5,3 +5,4 @@ bpftrace repository. Following modifications were introduced:
   when building tblgen
 - relevant CMakeLists.txt files were translated to appropriate Android.bp files
 - soong rules responsible for invoking tblgen were added
+- unused targets were commented out in device/include/llvm/Config/*.def files
