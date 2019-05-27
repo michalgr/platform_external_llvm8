@@ -1,0 +1,109 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+generated_headers = [
+    "llvm8_lib_Target_BPF_BPFGenAsmMatcher_inc",
+    "llvm8_lib_Target_BPF_BPFGenAsmWriter_inc",
+    "llvm8_lib_Target_BPF_BPFGenCallingConv_inc",
+    "llvm8_lib_Target_BPF_BPFGenDAGISel_inc",
+    "llvm8_lib_Target_BPF_BPFGenDisassemblerTables_inc",
+    "llvm8_lib_Target_BPF_BPFGenInstrInfo_inc",
+    "llvm8_lib_Target_BPF_BPFGenMCCodeEmitter_inc",
+    "llvm8_lib_Target_BPF_BPFGenRegisterInfo_inc",
+    "llvm8_lib_Target_BPF_BPFGenSubtargetInfo_inc",
+]
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenAsmMatcher_inc",
+    in: "BPF.td",
+    out: "BPFGenAsmMatcher.inc",
+    generators: "-gen-asm-matcher",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenAsmWriter_inc",
+    in: "BPF.td",
+    out: "BPFGenAsmWriter.inc",
+    generators: "-gen-asm-writer",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenCallingConv_inc",
+    in: "BPF.td",
+    out: "BPFGenCallingConv.inc",
+    generators: "-gen-callingconv",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenDAGISel_inc",
+    in: "BPF.td",
+    out: "BPFGenDAGISel.inc",
+    generators: "-gen-dag-isel",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenDisassemblerTables_inc",
+    in: "BPF.td",
+    out: "BPFGenDisassemblerTables.inc",
+    generators: "-gen-disassembler",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenInstrInfo_inc",
+    in: "BPF.td",
+    out: "BPFGenInstrInfo.inc",
+    generators: "-gen-instr-info",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenMCCodeEmitter_inc",
+    in: "BPF.td",
+    out: "BPFGenMCCodeEmitter.inc",
+    generators: "-gen-emitter",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenRegisterInfo_inc",
+    in: "BPF.td",
+    out: "BPFGenRegisterInfo.inc",
+    generators: "-gen-register-info",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_BPF_BPFGenSubtargetInfo_inc",
+    in: "BPF.td",
+    out: "BPFGenSubtargetInfo.inc",
+    generators: "-gen-subtarget",
+}
+
+cc_library_headers {
+    name: "llvm8_lib_Target_BPF_headers",
+    export_include_dirs: ["."],
+    generated_headers: generated_headers,
+    export_generated_headers: generated_headers,
+}
+
+cc_defaults {
+    name: "llvm8_lib_Target_BPF_defaults",
+    defaults: ["llvm8_defaults"],
+    header_libs: ["llvm8_lib_Target_BPF_headers"],
+}
+
+cc_library_static {
+    name: "llvm8_lib_Target_BPF",
+    defaults: ["llvm8_lib_Target_BPF_defaults"],
+    srcs: ["*.cpp"],
+}
