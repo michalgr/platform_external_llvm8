@@ -36,7 +36,7 @@
 // LLVM_TARGET(Sparc)
 // LLVM_TARGET(SystemZ)
 // LLVM_TARGET(WebAssembly)
-// LLVM_TARGET(X86)
+LLVM_TARGET(X86)
 // LLVM_TARGET(XCore)
 
 
