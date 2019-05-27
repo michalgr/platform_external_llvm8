@@ -125,6 +125,15 @@ cc_library_static {
         "llvm8_lib_WindowsManifest",
         "llvm8_lib_XRay",
 
+        // AArch64 target
+        "llvm8_lib_Target_AArch64",
+        "llvm8_lib_Target_AArch64_AsmParser",
+        "llvm8_lib_Target_AArch64_Disassembler",
+        "llvm8_lib_Target_AArch64_InstPrinter",
+        "llvm8_lib_Target_AArch64_MCTargetDesc",
+        "llvm8_lib_Target_AArch64_TargetInfo",
+        "llvm8_lib_Target_AArch64_Utils",
+
         // BPF target
         "llvm8_lib_Target_BPF",
         "llvm8_lib_Target_BPF_AsmParser",
