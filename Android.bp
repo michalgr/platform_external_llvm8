@@ -25,6 +25,16 @@ cc_defaults {
     ],
 }
 
+cc_defaults {
+    name: "llvm8_defaults",
+    header_libs: [
+        "llvm8_headers",
+    ],
+    cflags: [
+        "-Wno-unused-parameter",
+    ],
+}
+
 cc_library_headers {
     name: "llvm8_headers_no_generated_headers",
     host_supported: true,
@@ -37,4 +47,16 @@ cc_library_headers {
             export_include_dirs: ["host/include"],
         },
     },
+}
+
+cc_library_headers {
+    name: "llvm8_headers",
+    header_libs: [
+        "llvm8_headers_no_generated_headers",
+        "llvm8_generated_headers",
+    ],
+    export_header_lib_headers: [
+        "llvm8_headers_no_generated_headers",
+        "llvm8_generated_headers",
+    ],
 }
