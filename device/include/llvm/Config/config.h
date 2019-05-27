@@ -298,9 +298,23 @@
 /* Linker version detected at compile time. */
 /* #undef HOST_LINK_VERSION */
 
+#if defined(__i386__) || defined(__x86_64__)
+
 /* Target triple LLVM will generate code for by default */
 /* Doesn't use `cmakedefine` because it is allowed to be empty. */
 #define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-unknown-linux-gnu"
+
+#elif defined(__aarch64__)
+
+/* Target triple LLVM will generate code for by default */
+/* Doesn't use `cmakedefine` because it is allowed to be empty. */
+#define LLVM_DEFAULT_TARGET_TRIPLE "aarch64-none-linux-gnu"
+
+#else
+
+#error "Unknown native architecture"
+
+#endif
 
 /* Define if zlib compression is available */
 #define LLVM_ENABLE_ZLIB 1

@@ -20,14 +20,16 @@
 /* Define if we link Polly to the tools */
 /* #undef LINK_POLLY_INTO_TOOLS */
 
-/* Target triple LLVM will generate code for by default */
-#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-unknown-linux-gnu"
-
 /* Define if threads enabled */
 #define LLVM_ENABLE_THREADS 1
 
 /* Has gcc/MSVC atomic intrinsics */
 #define LLVM_HAS_ATOMICS 1
+
+#if defined(__i386__) || defined(__x86_64__)
+
+/* Target triple LLVM will generate code for by default */
+#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-unknown-linux-gnu"
 
 /* Host triple LLVM will be executed on */
 #define LLVM_HOST_TRIPLE "x86_64-unknown-linux-gnu"
@@ -52,6 +54,41 @@
 
 /* LLVM name for the native target MC init function, if available */
 #define LLVM_NATIVE_TARGETMC LLVMInitializeX86TargetMC
+
+#elif defined(__aarch64__)
+
+/* Target triple LLVM will generate code for by default */
+#define LLVM_DEFAULT_TARGET_TRIPLE "aarch64-none-linux-gnu"
+
+/* Host triple LLVM will be executed on */
+#define LLVM_HOST_TRIPLE "aarch64-none-linux-gnu"
+
+/* LLVM architecture name for the native architecture, if available */
+#define LLVM_NATIVE_ARCH AArch64
+
+/* LLVM name for the native AsmParser init function, if available */
+#define LLVM_NATIVE_ASMPARSER LLVMInitializeAArch64AsmParser
+
+/* LLVM name for the native AsmPrinter init function, if available */
+#define LLVM_NATIVE_ASMPRINTER LLVMInitializeAArch64AsmPrinter
+
+/* LLVM name for the native Disassembler init function, if available */
+#define LLVM_NATIVE_DISASSEMBLER LLVMInitializeAArch64Disassembler
+
+/* LLVM name for the native Target init function, if available */
+#define LLVM_NATIVE_TARGET LLVMInitializeAArch64Target
+
+/* LLVM name for the native TargetInfo init function, if available */
+#define LLVM_NATIVE_TARGETINFO LLVMInitializeAArch64TargetInfo
+
+/* LLVM name for the native target MC init function, if available */
+#define LLVM_NATIVE_TARGETMC LLVMInitializeAArch64TargetMC
+
+#else
+
+#error "Unknown native architecture"
+
+#endif
 
 /* Define if this is Unixish platform */
 #define LLVM_ON_UNIX 1
