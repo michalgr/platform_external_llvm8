@@ -16,5 +16,7 @@ you have shell variable LLVM_SOURCE_DIR pointing to llvm's source directory.
   4. Now you should have all generated headers (*.h, *.def) under
      $HOST_BUILD_DIR/include/llvm/Config. Copy them to llvm host directory in
      this repo.
+  5. Review macros defined in config.h and disable ones that impose unnecessary
+     restrictions on host environment.
 - Generating header fies for llvm Android
   TODO

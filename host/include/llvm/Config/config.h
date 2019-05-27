@@ -1,6 +1,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+/* Define to 1 to disable warnings and errors in code unreachable in code
+   generators */
+#define LLVM_CODEGEN_TOOLS_ONLY 1
+
 /* Exported configuration */
 #include "llvm/Config/llvm-config.h"
 
@@ -17,7 +21,7 @@
 #define LLVM_ENABLE_CRASH_DUMPS 0
 
 /* Define to 1 if you have the `backtrace' function. */
-#define HAVE_BACKTRACE TRUE
+/* #undef HAVE_BACKTRACE */
 
 #define BACKTRACE_HEADER <execinfo.h>
 
@@ -33,11 +37,11 @@
 
 /* Define to 1 if you have the declaration of `FE_ALL_EXCEPT', and to 0 if you
    don't. */
-#define HAVE_DECL_FE_ALL_EXCEPT 1
+#define HAVE_DECL_FE_ALL_EXCEPT 0
 
 /* Define to 1 if you have the declaration of `FE_INEXACT', and to 0 if you
    don't. */
-#define HAVE_DECL_FE_INEXACT 1
+#define HAVE_DECL_FE_INEXACT 0
 
 /* Define to 1 if you have the declaration of `strerror_s', and to 0 if you
    don't. */
@@ -73,17 +77,19 @@
 /* Define to 1 if you have the <ffi.h> header file. */
 /* #undef HAVE_FFI_H */
 
-/* Define to 1 if you have the `futimens' function. */
-#define HAVE_FUTIMENS 1
-
+#ifdef __APPLE__
 /* Define to 1 if you have the `futimes' function. */
 #define HAVE_FUTIMES 1
+#else
+/* Define to 1 if you have the `futimens' function. */
+#define HAVE_FUTIMENS 1
+#endif  // __APPLE__
 
 /* Define to 1 if you have the `getpagesize' function. */
 #define HAVE_GETPAGESIZE 1
 
 /* Define to 1 if you have the `getrlimit' function. */
-#define HAVE_GETRLIMIT 1
+/* #undef HAVE_GETRLIMIT */
 
 /* Define to 1 if you have the `getrusage' function. */
 #define HAVE_GETRUSAGE 1
@@ -113,7 +119,7 @@
 #define HAVE_LIBZ 1
 
 /* Define to 1 if you have the <link.h> header file. */
-#define HAVE_LINK_H 1
+/* #undef HAVE_LINK_H */
 
 /* Define to 1 if you have the `lseek64' function. */
 #define HAVE_LSEEK64 1
@@ -125,10 +131,10 @@
 /* #undef HAVE_MALLCTL */
 
 /* Define to 1 if you have the `mallinfo' function. */
-#define HAVE_MALLINFO 1
+/* #undef HAVE_MALLINFO */
 
 /* Define to 1 if you have the <malloc.h> header file. */
-#define HAVE_MALLOC_H 1
+/* #undef HAVE_MALLOC_H */
 
 /* Define to 1 if you have the <malloc/malloc.h> header file. */
 /* #undef HAVE_MALLOC_MALLOC_H */
@@ -137,13 +143,13 @@
 /* #undef HAVE_MALLOC_ZONE_STATISTICS */
 
 /* Define to 1 if you have the `posix_fallocate' function. */
-#define HAVE_POSIX_FALLOCATE 1
+/* #undef HAVE_POSIX_FALLOCATE */
 
 /* Define to 1 if you have the `posix_spawn' function. */
-#define HAVE_POSIX_SPAWN 1
+/* #undef HAVE_POSIX_SPAWN */
 
 /* Define to 1 if you have the `pread' function. */
-#define HAVE_PREAD 1
+/* #undef HAVE_PREAD */
 
 /* Have pthread_getspecific */
 #define HAVE_PTHREAD_GETSPECIFIC 1
@@ -158,25 +164,25 @@
 #define HAVE_PTHREAD_RWLOCK_INIT 1
 
 /* Define to 1 if you have the `realpath' function. */
-#define HAVE_REALPATH 1
+/* #undef HAVE_REALPATH */
 
 /* Define to 1 if you have the `sbrk' function. */
-#define HAVE_SBRK 1
+/* #undef HAVE_SBRK */
 
 /* Define to 1 if you have the `setenv' function. */
-#define HAVE_SETENV 1
+/* #undef HAVE_SETENV */
 
 /* Define to 1 if you have the `sched_getaffinity' function. */
-#define HAVE_SCHED_GETAFFINITY 1
+/* #undef HAVE_SCHED_GETAFFINITY */
 
 /* Define to 1 if you have the `CPU_COUNT' macro. */
-#define HAVE_CPU_COUNT 1
+/* #undef HAVE_CPU_COUNT */
 
 /* Define to 1 if you have the `setrlimit' function. */
-#define HAVE_SETRLIMIT 1
+/* #undef HAVE_SETRLIMIT */
 
 /* Define to 1 if you have the `sigaltstack' function. */
-#define HAVE_SIGALTSTACK 1
+/* #undef HAVE_SIGALTSTACK 1 */
 
 /* Define to 1 if you have the <signal.h> header file. */
 #define HAVE_SIGNAL_H 1
@@ -212,13 +218,13 @@
 /* #undef HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC */
 
 /* Define to 1 if stat struct has st_mtim member. */
-#define HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC 1
+/* #undef HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC */
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #define HAVE_SYS_TYPES_H 1
 
 /* Define if the setupterm() function is supported this platform. */
-#define HAVE_TERMINFO 1
+/* #undef HAVE_TERMINFO */
 
 /* Define if the xar_open() function is supported this platform. */
 /* #undef HAVE_LIBXAR */
@@ -242,7 +248,7 @@
 /* #undef HAVE__CHSIZE_S */
 
 /* Define to 1 if you have the `_Unwind_Backtrace' function. */
-#define HAVE__UNWIND_BACKTRACE 1
+/* #indef HAVE__UNWIND_BACKTRACE */
 
 /* Have host's __alloca */
 /* #undef HAVE___ALLOCA */
