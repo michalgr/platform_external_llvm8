@@ -20,4 +20,20 @@ you have shell variable LLVM_SOURCE_DIR pointing to llvm's source directory.
   5. Review macros defined in config.h and disable ones that impose unnecessary
      restrictions on host environment.
 - Generating header fies for llvm Android
-  TODO
+  1. cd $HOST_BUILD_DIR && make llvm-tblgen
+  2. Create new directory, referred later to as $ANDROID_BUILD_DIR
+  3. Setup standalone ndk to be used with cmake. Create cmake toolchain file
+     which might look as follows:
+     ```
+     set(CMAKE_SYSTEM_NAME Android)
+     set(CMAKE_SYSTEM_VERSION 28)
+     set(CMAKE_ANDROID_STANDALONE_TOOLCHAIN <standalone toolchain path>)
+     set(CMAKE_ANDROID_ARCH_ABI arm64-v8a)
+     ```
+     Path of the file will be referred to as TOOLCHAIN_FILE
+  4. cmake $LLVM_SOURCE_DIR \
+         -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE \
+         -DLLVM_TABLEGEN=$HOST_BUILD_DIR/bin/llvm-tblgen
+  5. Now you should have all generated headers (*.h, *.def) under
+     $ANDROID_BUILD_DIR/include/llvm/Config. Copy them to llvm device directory
+     in this repo.

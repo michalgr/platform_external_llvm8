@@ -40,6 +40,9 @@ cc_library_headers {
     host_supported: true,
     export_include_dirs: ["include"],
     target: {
+        android: {
+            export_include_dirs: ["device/include"],
+        },
         host: {
             export_include_dirs: ["host/include"],
         },
