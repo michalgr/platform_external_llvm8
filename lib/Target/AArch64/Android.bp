@@ -1,0 +1,183 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+tblgen_includes = " -I external/llvm8/include -I external/llvm8/lib/Target/AArch64"
+
+generated_headers = [
+    "llvm8_lib_Target_AArch64_AArch64GenAsmMatcher_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenAsmWriter_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenAsmWriter1_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenCallingConv_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenDAGISel_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenDisassemblerTables_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenFastISel_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenGlobalISel_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenInstrInfo_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenMCCodeEmitter_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenMCPseudoLowering_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenRegisterBank_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenRegisterInfo_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenSubtargetInfo_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenSystemOperands_inc",
+    "llvm8_lib_Target_AArch64_AArch64GenExegesis_inc",
+]
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenAsmMatcher_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-asm-matcher $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenAsmMatcher.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenAsmWriter_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-asm-writer $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenAsmWriter.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenAsmWriter1_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-asm-writer -asmwriternum=1 $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenAsmWriter1.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenCallingConv_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-callingconv $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenCallingConv.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenDAGISel_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-dag-isel $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenDAGISel.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenDisassemblerTables_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-disassembler $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenDisassemblerTables.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenFastISel_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-fast-isel $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenFastISel.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenGlobalISel_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-global-isel $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenGlobalISel.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenInstrInfo_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-instr-info $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenInstrInfo.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenMCCodeEmitter_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-emitter $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenMCCodeEmitter.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenMCPseudoLowering_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-pseudo-lowering $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenMCPseudoLowering.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenRegisterBank_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-register-bank $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenRegisterBank.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenRegisterInfo_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-register-info $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenRegisterInfo.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenSubtargetInfo_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-subtarget $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenSubtargetInfo.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenSystemOperands_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-searchable-tables $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenSystemOperands.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+genrule {
+    name: "llvm8_lib_Target_AArch64_AArch64GenExegesis_inc",
+    srcs: ["AArch64.td"],
+    cmd: "$(location llvm8_tblgen) -gen-exegesis $(in) -o $(out)" + tblgen_includes,
+    out: ["AArch64GenExegesis.inc"],
+    tools: ["llvm8_tblgen"],
+}
+
+cc_library_headers {
+    name: "llvm8_lib_Target_AArch64_headers",
+    export_include_dirs: ["."],
+    generated_headers: generated_headers,
+    export_generated_headers: generated_headers,
+}
+
+cc_defaults {
+    name: "llvm8_lib_Target_AArch64_defaults",
+    defaults: ["llvm8_defaults"],
+    header_libs: ["llvm8_lib_Target_AArch64_headers"],
+}
+
+cc_library_static {
+    name: "llvm8_lib_Target_AArch64",
+    defaults: ["llvm8_lib_Target_AArch64_defaults"],
+    srcs: ["*.cpp"],
+}
