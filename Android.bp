@@ -23,6 +23,7 @@ cc_defaults {
     cflags: [
         "-Wno-unused-parameter",
     ],
+    rtti: true,
 }
 
 cc_defaults {
@@ -33,6 +34,7 @@ cc_defaults {
     cflags: [
         "-Wno-unused-parameter",
     ],
+    rtti: true,
 }
 
 cc_library_headers {
