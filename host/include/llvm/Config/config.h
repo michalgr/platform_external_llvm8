@@ -15,7 +15,7 @@
 #define ENABLE_BACKTRACES 1
 
 /* Define to 1 to enable crash overrides, and to 0 otherwise. */
-#define ENABLE_CRASH_OVERRIDES 1
+#define ENABLE_CRASH_OVERRIDES 0
 
 /* Define to 1 to enable crash memory dumps, and to 0 otherwise. */
 #define LLVM_ENABLE_CRASH_DUMPS 0
@@ -122,7 +122,7 @@
 /* #undef HAVE_LINK_H */
 
 /* Define to 1 if you have the `lseek64' function. */
-#define HAVE_LSEEK64 1
+/* #undef HAVE_LSEEK64 */
 
 /* Define to 1 if you have the <mach/mach.h> header file. */
 /* #undef HAVE_MACH_MACH_H */
