@@ -1,0 +1,11 @@
+bootstrap_go_package {
+    name: "soong-llvm8",
+    pkgPath: "android/soong/external/llvm8",
+    deps: [
+        "soong-android",
+    ],
+    srcs: [
+        "tblgen.go",
+    ],
+    pluginFor: ["soong_build"],
+}

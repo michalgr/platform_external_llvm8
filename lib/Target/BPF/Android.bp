@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-tblgen_includes = " -I external/llvm8/include -I external/llvm8/lib/Target/BPF"
-
 generated_headers = [
     "llvm8_lib_Target_BPF_BPFGenAsmMatcher_inc",
     "llvm8_lib_Target_BPF_BPFGenAsmWriter_inc",
@@ -28,76 +26,67 @@ generated_headers = [
     "llvm8_lib_Target_BPF_BPFGenSubtargetInfo_inc",
 ]
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenAsmMatcher_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-matcher $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenAsmMatcher.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenAsmMatcher.inc",
+    generators: "-gen-asm-matcher",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenAsmWriter_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-writer $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenAsmWriter.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenAsmWriter.inc",
+    generators: "-gen-asm-writer",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenCallingConv_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-callingconv $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenCallingConv.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenCallingConv.inc",
+    generators: "-gen-callingconv",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenDAGISel_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-dag-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenDAGISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenDAGISel.inc",
+    generators: "-gen-dag-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenDisassemblerTables_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-disassembler $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenDisassemblerTables.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenDisassemblerTables.inc",
+    generators: "-gen-disassembler",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenInstrInfo_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-instr-info $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenInstrInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenInstrInfo.inc",
+    generators: "-gen-instr-info",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenMCCodeEmitter_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-emitter $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenMCCodeEmitter.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenMCCodeEmitter.inc",
+    generators: "-gen-emitter",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenRegisterInfo_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-register-info $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenRegisterInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenRegisterInfo.inc",
+    generators: "-gen-register-info",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_BPF_BPFGenSubtargetInfo_inc",
-    srcs: ["BPF.td"],
-    cmd: "$(location llvm8_tblgen) -gen-subtarget $(in) -o $(out)" + tblgen_includes,
-    out: ["BPFGenSubtargetInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "BPF.td",
+    out: "BPFGenSubtargetInfo.inc",
+    generators: "-gen-subtarget",
 }
 
 cc_library_headers {

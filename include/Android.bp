@@ -23,28 +23,25 @@ header_genrules = [
     "llvm8_include_llvm_Support_VCSRevision_h",
 ]
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_include_llvm_IR_Attributes_inc",
-    srcs: ["llvm/IR/Attributes.td"],
-    cmd: "$(location llvm8_tblgen) -gen-attrs $(in) -o $(out)",
-    out: ["llvm/IR/Attributes.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "llvm/IR/Attributes.td",
+    out: "llvm/IR/Attributes.inc",
+    generators: "-gen-attrs",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_include_llvm_IR_IntrinsicEnums_inc",
-    srcs: ["llvm/IR/Intrinsics.td"],
-    cmd: "$(location llvm8_tblgen) -gen-intrinsic-enums $(in) -o $(out)" + llvm_tblgen_includes,
-    out: ["llvm/IR/IntrinsicEnums.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "llvm/IR/Intrinsics.td",
+    out: "llvm/IR/IntrinsicEnums.inc",
+    generators: "-gen-intrinsic-enums",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_include_llvm_IR_IntrinsicImpl_inc",
-    srcs: ["llvm/IR/Intrinsics.td"],
-    cmd: "$(location llvm8_tblgen) -gen-intrinsic-impl $(in) -o $(out)" + llvm_tblgen_includes,
-    out: ["llvm/IR/IntrinsicImpl.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "llvm/IR/Intrinsics.td",
+    out: "llvm/IR/IntrinsicImpl.inc",
+    generators: "-gen-intrinsic-impl",
 }
 
 genrule {

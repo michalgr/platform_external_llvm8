@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-tblgen_includes = " -I external/llvm8/include -I external/llvm8/lib/Target/AArch64"
-
 generated_headers = [
     "llvm8_lib_Target_AArch64_AArch64GenAsmMatcher_inc",
     "llvm8_lib_Target_AArch64_AArch64GenAsmWriter_inc",
@@ -35,132 +33,116 @@ generated_headers = [
     "llvm8_lib_Target_AArch64_AArch64GenExegesis_inc",
 ]
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenAsmMatcher_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-matcher $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenAsmMatcher.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenAsmMatcher.inc",
+    generators: "-gen-asm-matcher",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenAsmWriter_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-writer $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenAsmWriter.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenAsmWriter.inc",
+    generators: "-gen-asm-writer",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenAsmWriter1_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-writer -asmwriternum=1 $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenAsmWriter1.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenAsmWriter1.inc",
+    generators: "-gen-asm-writer -asmwriternum=1",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenCallingConv_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-callingconv $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenCallingConv.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenCallingConv.inc",
+    generators: "-gen-callingconv",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenDAGISel_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-dag-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenDAGISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenDAGISel.inc",
+    generators: "-gen-dag-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenDisassemblerTables_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-disassembler $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenDisassemblerTables.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenDisassemblerTables.inc",
+    generators: "-gen-disassembler",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenFastISel_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-fast-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenFastISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenFastISel.inc",
+    generators: "-gen-fast-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenGlobalISel_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-global-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenGlobalISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenGlobalISel.inc",
+    generators: "-gen-global-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenInstrInfo_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-instr-info $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenInstrInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenInstrInfo.inc",
+    generators: "-gen-instr-info",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenMCCodeEmitter_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-emitter $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenMCCodeEmitter.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenMCCodeEmitter.inc",
+    generators: "-gen-emitter",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenMCPseudoLowering_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-pseudo-lowering $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenMCPseudoLowering.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenMCPseudoLowering.inc",
+    generators: "-gen-pseudo-lowering",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenRegisterBank_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-register-bank $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenRegisterBank.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenRegisterBank.inc",
+    generators: "-gen-register-bank",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenRegisterInfo_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-register-info $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenRegisterInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenRegisterInfo.inc",
+    generators: "-gen-register-info",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenSubtargetInfo_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-subtarget $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenSubtargetInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenSubtargetInfo.inc",
+    generators: "-gen-subtarget",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenSystemOperands_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-searchable-tables $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenSystemOperands.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenSystemOperands.inc",
+    generators: "-gen-searchable-tables",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_AArch64_AArch64GenExegesis_inc",
-    srcs: ["AArch64.td"],
-    cmd: "$(location llvm8_tblgen) -gen-exegesis $(in) -o $(out)" + tblgen_includes,
-    out: ["AArch64GenExegesis.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "AArch64.td",
+    out: "AArch64GenExegesis.inc",
+    generators: "-gen-exegesis",
 }
 
 cc_library_headers {

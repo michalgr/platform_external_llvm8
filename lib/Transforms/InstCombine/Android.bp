@@ -14,18 +14,15 @@
 // limitations under the License.
 //
 
-tblgen_includes = " -I external/llvm8/include"
-
 generated_headers = [
     "llvm8_lib_Transforms_InstCompine_InstCombineTables_inc",
 ]
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Transforms_InstCompine_InstCombineTables_inc",
-    srcs: ["InstCombineTables.td"],
-    cmd: "$(location llvm8_tblgen) -gen-searchable-tables $(in) -o $(out)" + tblgen_includes,
-    out: ["InstCombineTables.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "InstCombineTables.td",
+    out: "InstCombineTables.inc",
+    generators: "-gen-searchable-tables",
 }
 
 cc_library_static {

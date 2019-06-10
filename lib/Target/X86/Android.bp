@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-tblgen_includes = " -I external/llvm8/include -I external/llvm8/lib/Target/X86"
-
 generated_headers = [
     "llvm8_lib_Target_X86_X86GenAsmMatcher_inc",
     "llvm8_lib_Target_X86_X86GenAsmWriter_inc",
@@ -33,116 +31,102 @@ generated_headers = [
     "llvm8_lib_Target_X86_X86GenSubtargetInfo_inc",
 ]
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenAsmMatcher_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-matcher $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenAsmMatcher.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenAsmMatcher.inc",
+    generators: "-gen-asm-matcher",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenAsmWriter_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-writer $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenAsmWriter.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenAsmWriter.inc",
+    generators: "-gen-asm-writer",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenAsmWriter1_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-asm-writer -asmwriternum=1 $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenAsmWriter1.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenAsmWriter1.inc",
+    generators: "-gen-asm-writer -asmwriternum=1",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenCallingConv_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-callingconv $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenCallingConv.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenCallingConv.inc",
+    generators: "-gen-callingconv",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenDAGISel_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-dag-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenDAGISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenDAGISel.inc",
+    generators: "-gen-dag-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenDisassemblerTables_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-disassembler $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenDisassemblerTables.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenDisassemblerTables.inc",
+    generators: "-gen-disassembler",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenEVEX2VEXTables_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-x86-EVEX2VEX-tables $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenEVEX2VEXTables.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenEVEX2VEXTables.inc",
+    generators: "-gen-x86-EVEX2VEX-tables",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenExegesis_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-exegesis $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenExegesis.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenExegesis.inc",
+    generators: "-gen-exegesis",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenFastISel_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-fast-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenFastISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenFastISel.inc",
+    generators: "-gen-fast-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenGlobalISel_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-global-isel $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenGlobalISel.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenGlobalISel.inc",
+    generators: "-gen-global-isel",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenInstrInfo_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-instr-info $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenInstrInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenInstrInfo.inc",
+    generators: "-gen-instr-info",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenRegisterBank_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-register-bank $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenRegisterBank.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenRegisterBank.inc",
+    generators: "-gen-register-bank",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenRegisterInfo_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-register-info $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenRegisterInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenRegisterInfo.inc",
+    generators: "-gen-register-info",
 }
 
-genrule {
+llvm8_tblgen {
     name: "llvm8_lib_Target_X86_X86GenSubtargetInfo_inc",
-    srcs: ["X86.td"],
-    cmd: "$(location llvm8_tblgen) -gen-subtarget $(in) -o $(out)" + tblgen_includes,
-    out: ["X86GenSubtargetInfo.inc"],
-    tools: ["llvm8_tblgen"],
+    in: "X86.td",
+    out: "X86GenSubtargetInfo.inc",
+    generators: "-gen-subtarget",
 }
 
 cc_library_headers {
