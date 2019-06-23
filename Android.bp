@@ -136,6 +136,15 @@ cc_library_static {
         "llvm8_lib_Target_AArch64_TargetInfo",
         "llvm8_lib_Target_AArch64_Utils",
 
+        // ARM target
+        "llvm8_lib_Target_ARM",
+        "llvm8_lib_Target_ARM_AsmParser",
+        "llvm8_lib_Target_ARM_Disassembler",
+        "llvm8_lib_Target_ARM_InstPrinter",
+        "llvm8_lib_Target_ARM_MCTargetDesc",
+        "llvm8_lib_Target_ARM_TargetInfo",
+        "llvm8_lib_Target_ARM_Utils",
+
         // BPF target
         "llvm8_lib_Target_BPF",
         "llvm8_lib_Target_BPF_AsmParser",

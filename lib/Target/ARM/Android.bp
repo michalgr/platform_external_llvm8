@@ -1,0 +1,149 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+generated_headers = [
+    "llvm8_lib_Target_ARM_ARMGenAsmMatcher_inc",
+    "llvm8_lib_Target_ARM_ARMGenAsmWriter_inc",
+    "llvm8_lib_Target_ARM_ARMGenCallingConv_inc",
+    "llvm8_lib_Target_ARM_ARMGenDAGISel_inc",
+    "llvm8_lib_Target_ARM_ARMGenDisassemblerTables_inc",
+    "llvm8_lib_Target_ARM_ARMGenFastISel_inc",
+    "llvm8_lib_Target_ARM_ARMGenGlobalISel_inc",
+    "llvm8_lib_Target_ARM_ARMGenInstrInfo_inc",
+    "llvm8_lib_Target_ARM_ARMGenMCCodeEmitter_inc",
+    "llvm8_lib_Target_ARM_ARMGenMCPseudoLowering_inc",
+    "llvm8_lib_Target_ARM_ARMGenRegisterBank_inc",
+    "llvm8_lib_Target_ARM_ARMGenRegisterInfo_inc",
+    "llvm8_lib_Target_ARM_ARMGenSubtargetInfo_inc",
+    "llvm8_lib_Target_ARM_ARMGenSystemRegister_inc",
+]
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenAsmMatcher_inc",
+    in: "ARM.td",
+    out: "ARMGenAsmMatcher.inc",
+    generators: "-gen-asm-matcher",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenAsmWriter_inc",
+    in: "ARM.td",
+    out: "ARMGenAsmWriter.inc",
+    generators: "-gen-asm-writer",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenCallingConv_inc",
+    in: "ARM.td",
+    out: "ARMGenCallingConv.inc",
+    generators: "-gen-callingconv",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenDAGISel_inc",
+    in: "ARM.td",
+    out: "ARMGenDAGISel.inc",
+    generators: "-gen-dag-isel",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenDisassemblerTables_inc",
+    in: "ARM.td",
+    out: "ARMGenDisassemblerTables.inc",
+    generators: "-gen-disassembler",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenFastISel_inc",
+    in: "ARM.td",
+    out: "ARMGenFastISel.inc",
+    generators: "-gen-fast-isel",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenGlobalISel_inc",
+    in: "ARM.td",
+    out: "ARMGenGlobalISel.inc",
+    generators: "-gen-global-isel",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenInstrInfo_inc",
+    in: "ARM.td",
+    out: "ARMGenInstrInfo.inc",
+    generators: "-gen-instr-info",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenMCCodeEmitter_inc",
+    in: "ARM.td",
+    out: "ARMGenMCCodeEmitter.inc",
+    generators: "-gen-emitter",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenMCPseudoLowering_inc",
+    in: "ARM.td",
+    out: "ARMGenMCPseudoLowering.inc",
+    generators: "-gen-pseudo-lowering",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenRegisterBank_inc",
+    in: "ARM.td",
+    out: "ARMGenRegisterBank.inc",
+    generators: "-gen-register-bank",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenRegisterInfo_inc",
+    in: "ARM.td",
+    out: "ARMGenRegisterInfo.inc",
+    generators: "-gen-register-info",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenSubtargetInfo_inc",
+    in: "ARM.td",
+    out: "ARMGenSubtargetInfo.inc",
+    generators: "-gen-subtarget",
+}
+
+llvm8_tblgen {
+    name: "llvm8_lib_Target_ARM_ARMGenSystemRegister_inc",
+    in: "ARM.td",
+    out: "ARMGenSystemRegister.inc",
+    generators: "-gen-searchable-tables",
+}
+
+cc_library_headers {
+    name: "llvm8_lib_Target_ARM_headers",
+    export_include_dirs: ["."],
+    generated_headers: generated_headers,
+    export_generated_headers: generated_headers,
+}
+
+cc_defaults {
+    name: "llvm8_lib_Target_ARM_defaults",
+    defaults: ["llvm8_defaults"],
+    header_libs: ["llvm8_lib_Target_ARM_headers"],
+}
+
+cc_library_static {
+    name: "llvm8_lib_Target_ARM",
+    defaults: ["llvm8_lib_Target_ARM_defaults"],
+    srcs: ["*.cpp"],
+}
