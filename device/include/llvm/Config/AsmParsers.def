@@ -24,10 +24,18 @@
 #  error Please define the macro LLVM_ASM_PARSER(TargetName)
 #endif
 
+#if defined(__aarch64__)
 LLVM_ASM_PARSER(AArch64)
+#endif
+
 // LLVM_ASM_PARSER(AMDGPU)
+
+#if defined(__arm__)
 LLVM_ASM_PARSER(ARM)
+#endif
+
 LLVM_ASM_PARSER(BPF)
+
 // LLVM_ASM_PARSER(Hexagon)
 // LLVM_ASM_PARSER(Lanai)
 // LLVM_ASM_PARSER(Mips)
@@ -36,7 +44,9 @@ LLVM_ASM_PARSER(BPF)
 // LLVM_ASM_PARSER(Sparc)
 // LLVM_ASM_PARSER(SystemZ)
 // LLVM_ASM_PARSER(WebAssembly)
-LLVM_ASM_PARSER(X86)
 
+#if defined(__i386__) || defined(__x86_64__)
+LLVM_ASM_PARSER(X86)
+#endif
 
 #undef LLVM_ASM_PARSER

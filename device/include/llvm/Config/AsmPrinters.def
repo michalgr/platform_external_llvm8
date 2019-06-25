@@ -24,9 +24,16 @@
 #  error Please define the macro LLVM_ASM_PRINTER(TargetName)
 #endif
 
+#if defined(__aarch64__)
 LLVM_ASM_PRINTER(AArch64)
+#endif
+
 // LLVM_ASM_PRINTER(AMDGPU)
+
+#if defined(__arm__)
 LLVM_ASM_PRINTER(ARM)
+#endif
+
 LLVM_ASM_PRINTER(BPF)
 // LLVM_ASM_PRINTER(Hexagon)
 // LLVM_ASM_PRINTER(Lanai)
@@ -37,7 +44,11 @@ LLVM_ASM_PRINTER(BPF)
 // LLVM_ASM_PRINTER(Sparc)
 // LLVM_ASM_PRINTER(SystemZ)
 // LLVM_ASM_PRINTER(WebAssembly)
+
+#if defined(__i386__) || defined(__x86_64__)
 LLVM_ASM_PRINTER(X86)
+#endif
+
 // LLVM_ASM_PRINTER(XCore)
 
 
