@@ -1,6 +1,6 @@
 bootstrap_go_package {
     name: "soong-bpftrace-llvm",
-    pkgPath: "android/soong/external/bpftrace/llvm",
+    pkgPath: "android/soong/external/bpftrace/llvm8",
     deps: [
         "soong-android",
     ],
