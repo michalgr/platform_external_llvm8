@@ -63,6 +63,36 @@ cc_library_headers {
     ],
 }
 
+aarch64_target_libs = [
+    "llvm8_lib_Target_AArch64",
+    "llvm8_lib_Target_AArch64_AsmParser",
+    "llvm8_lib_Target_AArch64_Disassembler",
+    "llvm8_lib_Target_AArch64_InstPrinter",
+    "llvm8_lib_Target_AArch64_MCTargetDesc",
+    "llvm8_lib_Target_AArch64_TargetInfo",
+    "llvm8_lib_Target_AArch64_Utils",
+]
+
+arm_target_libs = [
+    "llvm8_lib_Target_ARM",
+    "llvm8_lib_Target_ARM_AsmParser",
+    "llvm8_lib_Target_ARM_Disassembler",
+    "llvm8_lib_Target_ARM_InstPrinter",
+    "llvm8_lib_Target_ARM_MCTargetDesc",
+    "llvm8_lib_Target_ARM_TargetInfo",
+    "llvm8_lib_Target_ARM_Utils",
+]
+
+x86_target_libs = [
+    "llvm8_lib_Target_X86",
+    "llvm8_lib_Target_X86_AsmParser",
+    "llvm8_lib_Target_X86_Disassembler",
+    "llvm8_lib_Target_X86_InstPrinter",
+    "llvm8_lib_Target_X86_MCTargetDesc",
+    "llvm8_lib_Target_X86_TargetInfo",
+    "llvm8_lib_Target_X86_Utils",
+]
+
 cc_library_static {
     name: "libllvm8",
     header_libs: [
@@ -127,24 +157,6 @@ cc_library_static {
         "llvm8_lib_WindowsManifest",
         "llvm8_lib_XRay",
 
-        // AArch64 target
-        "llvm8_lib_Target_AArch64",
-        "llvm8_lib_Target_AArch64_AsmParser",
-        "llvm8_lib_Target_AArch64_Disassembler",
-        "llvm8_lib_Target_AArch64_InstPrinter",
-        "llvm8_lib_Target_AArch64_MCTargetDesc",
-        "llvm8_lib_Target_AArch64_TargetInfo",
-        "llvm8_lib_Target_AArch64_Utils",
-
-        // ARM target
-        "llvm8_lib_Target_ARM",
-        "llvm8_lib_Target_ARM_AsmParser",
-        "llvm8_lib_Target_ARM_Disassembler",
-        "llvm8_lib_Target_ARM_InstPrinter",
-        "llvm8_lib_Target_ARM_MCTargetDesc",
-        "llvm8_lib_Target_ARM_TargetInfo",
-        "llvm8_lib_Target_ARM_Utils",
-
         // BPF target
         "llvm8_lib_Target_BPF",
         "llvm8_lib_Target_BPF_AsmParser",
@@ -152,14 +164,20 @@ cc_library_static {
         "llvm8_lib_Target_BPF_InstPrinter",
         "llvm8_lib_Target_BPF_MCTargetDesc",
         "llvm8_lib_Target_BPF_TargetInfo",
-
-        // X86 target
-        "llvm8_lib_Target_X86",
-        "llvm8_lib_Target_X86_AsmParser",
-        "llvm8_lib_Target_X86_Disassembler",
-        "llvm8_lib_Target_X86_InstPrinter",
-        "llvm8_lib_Target_X86_MCTargetDesc",
-        "llvm8_lib_Target_X86_TargetInfo",
-        "llvm8_lib_Target_X86_Utils",
     ],
+
+    target: {
+        android_arm64: {
+            whole_static_libs: aarch64_target_libs,
+        },
+        android_arm: {
+            whole_static_libs: arm_target_libs,
+        },
+        android_x86: {
+            whole_static_libs: x86_target_libs,
+        },
+        android_x86_64: {
+            whole_static_libs: x86_target_libs,
+        },
+    },
 }

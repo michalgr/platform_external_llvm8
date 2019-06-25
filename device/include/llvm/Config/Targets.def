@@ -23,9 +23,16 @@
 #  error Please define the macro LLVM_TARGET(TargetName)
 #endif
 
+#if defined(__aarch64__)
 LLVM_TARGET(AArch64)
+#endif
+
 // LLVM_TARGET(AMDGPU)
+
+#if defined(__arm__)
 LLVM_TARGET(ARM)
+#endif
+
 LLVM_TARGET(BPF)
 // LLVM_TARGET(Hexagon)
 // LLVM_TARGET(Lanai)
@@ -36,7 +43,11 @@ LLVM_TARGET(BPF)
 // LLVM_TARGET(Sparc)
 // LLVM_TARGET(SystemZ)
 // LLVM_TARGET(WebAssembly)
+
+#if defined(__i386__) || defined(__x86_64__)
 LLVM_TARGET(X86)
+#endif
+
 // LLVM_TARGET(XCore)
 
 
