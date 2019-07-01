@@ -21,6 +21,7 @@ cc_defaults {
         "llvm8_headers_no_generated_headers",
     ],
     cflags: [
+        "-Oz",
         "-Wno-unused-parameter",
     ],
     rtti: true,
@@ -32,6 +33,7 @@ cc_defaults {
         "llvm8_headers",
     ],
     cflags: [
+        "-Oz",
         "-Wno-unused-parameter",
     ],
     rtti: true,
